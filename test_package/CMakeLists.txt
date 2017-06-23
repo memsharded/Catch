@@ -2,13 +2,16 @@ cmake_minimum_required(VERSION 3.0)
 
 project(CatchSelfTest)
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # define some folders
 set(CATCH_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(SELF_TEST_DIR ${CATCH_DIR}/projects/SelfTest)
 set(BENCHMARK_DIR ${CATCH_DIR}/projects/Benchmark)
-set(HEADER_DIR ${CATCH_DIR}/include)
+set(HEADER_DIR ${CONAN_INCLUDE_DIRS})
 
 if(USE_CPP11)
     ## We can't turn this on by default, since it breaks on travis
